@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.hubalek.android.gaugebattwidget</groupId>
+    <artifactId>themes</artifactId>
+    <version>3.0.0</version>
+    <name>themes</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>ipc-main-app</module>
+        <module>ipc-shared-code</module>
+        <module>ipc-plugin-library</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>3.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>sign</id>
+            <activation>
+                <file>
+                    <exists>assets/battery_status_0.png</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                        <artifactId>android-maven-plugin</artifactId>
+                        <configuration>
+                            <sign>
+                                <debug>false</debug>
+                            </sign>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jarsigner-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <id>signing</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <verbose>true</verbose>
+                                    <archive>${project.build.directory}/${project.build.finalName}.apk</archive>
+                                    <keystore>${android.keystore}</keystore>
+                                    <storepass>${android.keystore.password}</storepass>
+                                    <keypass>${android.keystore.password}</keypass>
+                                    <alias>tomáš hubálek</alias>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.1.1</version>
+                        <executions>
+                            <execution>
+                                <id>zipalign</id>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <executable>${android.sdk.path}/tools/zipalign</executable>
+                                    <arguments>
+                                        <argument>-f</argument>
+                                        <argument>4</argument>
+                                        <argument>${project.build.directory}/${project.build.finalName}.apk</argument>
+                                        <argument>${project.build.directory}/${project.build.finalName}-aligned.apk
+                                        </argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

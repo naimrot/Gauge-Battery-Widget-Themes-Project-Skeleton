@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Plugin Package Name:"
+            android:paddingTop="20dip"
+            android:textSize="20dip"
+            android:textStyle="bold"
+    />
+
+    <Spinner android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/spinnerPluginsList"
+    />
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:paddingTop="20dip">
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Info"
+                android:id="@+id/buttonInfo"/>
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="25%"
+                android:id="@+id/buttonShow25"/>
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="50%"
+                android:id="@+id/buttonShow50"/>
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="75%"
+                android:id="@+id/buttonShow75"/>
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Clr"
+                android:id="@+id/buttonClear"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
