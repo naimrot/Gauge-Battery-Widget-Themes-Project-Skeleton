@@ -55,7 +55,9 @@ java.lang.String _arg3;
 _arg3 = data.readString();
 java.lang.String _arg4;
 _arg4 = data.readString();
-this.updateStatusBarInfo(_arg0, _arg1, _arg2, _arg3, _arg4);
+java.lang.String _arg5;
+_arg5 = data.readString();
+this.updateStatusBarInfo(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
 reply.writeNoException();
 return true;
 }
@@ -84,7 +86,7 @@ public java.lang.String getInterfaceDescriptor()
 {
 return DESCRIPTOR;
 }
-public void updateStatusBarInfo(java.lang.String title, java.lang.String text, int level, java.lang.String callbackPackageName, java.lang.String callbackActivityName) throws android.os.RemoteException
+public void updateStatusBarInfo(java.lang.String title, java.lang.String text, int level, java.lang.String callbackPackageName, java.lang.String callbackActivityName, java.lang.String callbackServiceName) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 android.os.Parcel _reply = android.os.Parcel.obtain();
@@ -95,6 +97,7 @@ _data.writeString(text);
 _data.writeInt(level);
 _data.writeString(callbackPackageName);
 _data.writeString(callbackActivityName);
+_data.writeString(callbackServiceName);
 mRemote.transact(Stub.TRANSACTION_updateStatusBarInfo, _data, _reply, 0);
 _reply.readException();
 }
@@ -121,6 +124,6 @@ _data.recycle();
 static final int TRANSACTION_updateStatusBarInfo = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
 static final int TRANSACTION_hideStatusBarInfo = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
 }
-public void updateStatusBarInfo(java.lang.String title, java.lang.String text, int level, java.lang.String callbackPackageName, java.lang.String callbackActivityName) throws android.os.RemoteException;
+public void updateStatusBarInfo(java.lang.String title, java.lang.String text, int level, java.lang.String callbackPackageName, java.lang.String callbackActivityName, java.lang.String callbackServiceName) throws android.os.RemoteException;
 public void hideStatusBarInfo() throws android.os.RemoteException;
 }

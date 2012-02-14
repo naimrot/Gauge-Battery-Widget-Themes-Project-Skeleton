@@ -3,6 +3,7 @@ out/*
 */bin/*
 */gen/*
 */lint.xml
-weather-theme-sample/assets/.directory
 */proguard_logs/*
 *.apk
+ipc-generated-module-*/*
+*/target/*

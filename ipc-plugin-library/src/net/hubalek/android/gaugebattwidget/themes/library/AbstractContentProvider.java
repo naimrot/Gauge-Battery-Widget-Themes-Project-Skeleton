@@ -61,7 +61,7 @@ public abstract class AbstractContentProvider extends ContentProvider {
     @Override
     public AssetFileDescriptor openAssetFile(Uri uri, String mode) throws FileNotFoundException {
 
-        Log.d(Constants.LOG_TAG, "AbstractContentProvider.openAssetFile(" + uri + "," + mode + " called...");
+//        Log.d(Constants.LOG_TAG, "AbstractContentProvider.openAssetFile(" + uri + "," + mode + " called...");
 
         if (uri.getPathSegments().size() > 1 && uri.getPathSegments().get(0).equals(CONTENT_PROVIDER_PATH_ELEMENT_ICONS)) {
 
@@ -81,7 +81,7 @@ public abstract class AbstractContentProvider extends ContentProvider {
 
             try {
                 final AssetFileDescriptor fileDescriptor = getContext().getAssets().openFd(icon_name + ICON_FILE_EXTENSION);
-                Log.d(Constants.LOG_TAG, "fileDescriptor=" + fileDescriptor);
+//                Log.d(Constants.LOG_TAG, "fileDescriptor=" + fileDescriptor);
                 return fileDescriptor;
             } catch (IOException e) {
                 Log.e(Constants.LOG_TAG, "ERROR: " + e);
