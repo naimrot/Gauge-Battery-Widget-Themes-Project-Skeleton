@@ -1,0 +1,13 @@
+This is theme for Gauge Battery Widget status bar icon. 
+
+More Themes from this family at https://market.android.com/search?q=gbw-theme-family-simple-round
+
+More Gauge Battery Widget Themes at https://market.android.com/search?q=gbw-status-bar-icon-theme
+
+Note: You need Gauge Battery Widget 3.0 Pro or newer to use this theme.
+
+Feel free to send email to android.dev.tom@gmail.com if you have idea for new status bar theme. No response guaranteed but why not try your luck.
+
+Visit http://www.gaugebatterywidget.com/developer.html if you wanna create your own theme.
+
+Keywords: gbw-status-bar-icon-theme, gbw-theme-family-simple-round

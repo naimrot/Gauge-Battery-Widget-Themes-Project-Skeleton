@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="net.hubalek.android.gaugebattwidget.themes.ics"
+          android:versionCode="3"
+          android:versionName="1.0.1">
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+        <provider
+                android:name=".ContentProvider"
+                android:authorities="net.hubalek.android.gaugebattwidget.themes.ics"
+                android:exported="true"
+        />
+        <service android:exported="true" android:name=".Service"/>
+        <activity android:name="net.hubalek.android.gaugebattwidget.themes.library.MarkerActivity">
+            <intent-filter>
+                <action android:name="net.hubalek.android.gaugebattwidget.actions.SHOW_BATTERY_INFO"/>
+            </intent-filter>
+        </activity>
+    </application>
+    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="14"/>
+</manifest>

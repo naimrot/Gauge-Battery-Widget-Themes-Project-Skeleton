@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ICS Cyan Simple Round</string>
+    <string name="description">ICS Cyan theme from &lt;a href=&quot;https://market.android.com/search?q=gbw-theme-family-simple-round&quot;&gt;Simple Round GBW Theme Family&lt;/a&gt;.</string>
+
+    <string name="author">Tomáš Hubálek</string>
+    <string name="email">android.dev.tom@gmail.com</string>
+    <string name="url">http://www.gaugebatterywidget.com</string>
+
+    <string name="donation_email">john@example.com</string>
+    <string name="donation_currency">EUR</string>
+    <string name="donation_amount">0.0</string>
+
+</resources>
