@@ -206,7 +206,7 @@ public class MainActivity extends Activity {
          */
         public void displayInfo(String title, String text, int level, String callbackPackageName, String callbackActivityName) {
             try {
-                mRemoteService.updateStatusBarInfo(title, text, level, callbackPackageName, callbackActivityName);
+                mRemoteService.updateStatusBarInfo(title, text, level, callbackPackageName, callbackActivityName, "");
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

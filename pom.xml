@@ -11,6 +11,7 @@
         <module>ipc-main-app</module>
         <module>ipc-shared-code</module>
         <module>ipc-plugin-library</module>
+        <module>ipc-sample-module</module>
     </modules>
 
     <dependencies>
@@ -58,7 +59,7 @@
                                     <keystore>${android.keystore}</keystore>
                                     <storepass>${android.keystore.password}</storepass>
                                     <keypass>${android.keystore.password}</keypass>
-                                    <alias>tomáš hubálek</alias>
+                                    <alias>${android.keystore.alias}</alias>
                                 </configuration>
                             </execution>
                         </executions>

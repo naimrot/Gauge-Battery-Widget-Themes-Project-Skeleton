@@ -44,10 +44,10 @@ public abstract class AbstractStatusBarNotificationService extends Service {
                 CharSequence tickerText = null;
                 CharSequence contentTitle = title;
                 CharSequence contentText = text;
-                
+
                 packageName = callbackPackageName;
                 serviceName = callbackServiceName;
-    
+
 //                Log.d(LOG_TAG, "Callback activity: " + callbackPackageName + "/" + callbackActivityName);
     
                 // get instance of notification manager
@@ -65,13 +65,9 @@ public abstract class AbstractStatusBarNotificationService extends Service {
     
                 Intent notificationIntent = new Intent();
                 notificationIntent.setComponent(new ComponentName(callbackPackageName, callbackActivityName));
-    
-//                Log.d(LOG_TAG, "Notification intent used is " + notificationIntent);
-    
+
                 PendingIntent contentIntent = PendingIntent.getActivity(getApplication(), 0, notificationIntent, 0);
-    
-//                Log.d(LOG_TAG, "Pending intent is " + contentIntent);
-    
+
                 notification.icon = icon;
                 notification.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
                 notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
@@ -122,17 +118,28 @@ public abstract class AbstractStatusBarNotificationService extends Service {
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d(LOG_TAG, "onCreate called...");
+        registerBatteryReceiver();
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(LOG_TAG, "onStartCommand called...");
         super.onStartCommand(intent, flags, startId);
         registerBatteryReceiver();
-        Log.d(LOG_TAG, "receiverRegistered...");
         return START_STICKY;
     }
 
     private void registerBatteryReceiver() {
-        mBatInfoReceiver = new BatteryBroadcastReceiver();
-        registerReceiver(mBatInfoReceiver,  new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        if (mBatInfoReceiver == null) {
+            mBatInfoReceiver = new BatteryBroadcastReceiver();
+            registerReceiver(mBatInfoReceiver,  new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+            Log.d(LOG_TAG, "receiverRegistered...");
+        } else {
+            Log.d(LOG_TAG, "Battery Receiver already registered. Not necessary to register again....");
+        }
     }
 
     @Override
@@ -144,13 +151,12 @@ public abstract class AbstractStatusBarNotificationService extends Service {
         super.onDestroy();    
     }
 
-
     private interface BoundServiceCallback {
         void onServiceBound(IPluginCallbackService iStatusBarInfoRemoteService);
     }
-    
+
     private PluginCallbackServiceConnection mPluginCallbackServiceConnection = new PluginCallbackServiceConnection();
-    
+
     private static class PluginCallbackServiceConnection implements ServiceConnection {
 
         public IPluginCallbackService mRemoteService;
@@ -187,7 +193,7 @@ public abstract class AbstractStatusBarNotificationService extends Service {
             final int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
             final int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
             final int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN);
-            
+
             Log.d(LOG_TAG, "Battery changed: " + level + ", " + voltage + "mV, " + temperature + "°C, " + status);
 
             if (!mPluginCallbackServiceConnection.connected) {
